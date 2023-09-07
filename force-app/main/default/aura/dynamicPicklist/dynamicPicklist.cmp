@@ -1,0 +1,37 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller = "dynamicPicklistVal">
+    <aura:attribute name="StatusList" type="List"/>
+    <aura:attribute name="industryList" type="List"/>
+    <aura:attribute name="salutationList" type="List"/>
+    <aura:attribute name="pickListMap" type="Map"/>
+    <aura:attribute name = "lead" type="sObject" default = "{'sObjectType' : 'Lead'}"/>
+    <aura:attribute name = "account" type="sObject" default = "{'sObjectType' : 'Account'}"/>
+    <aura:handler name = "init" value = "{!this}" action = "{!c.doInit}"/>
+    
+    <div>
+    <lightning:card title = "Picklist Entries Task">
+        <div>
+            <lightning:select value = "{!v.lead.Status}" name = "statusPickList" label = "Lead Stage">
+                <aura:iteration items = "{!v.StatusList}" var = "val">
+                <option text="{!val}" value="{!val}"/>
+                </aura:iteration>
+            </lightning:select>
+        </div>
+        
+        <div>
+            <lightning:select value = "{!v.lead.Salutation}" name = "salutationPickList" label = "Salutation">
+                <aura:iteration items = "{!v.salutationList}" var = "val">
+                <option text="{!val}" value="{!val}"/>
+                </aura:iteration>
+            </lightning:select>
+        </div>
+        
+        <div>
+            <lightning:select value = "{!v.account.Industry}" name = "industryPickList" label = "Account industries">
+                <aura:iteration items = "{!v.industryList}" var = "val">
+                <option text="{!val}" value="{!val}"/>
+                </aura:iteration>
+            </lightning:select>
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>
